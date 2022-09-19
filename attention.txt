@@ -1,0 +1,1 @@
+팀원들은 들으라 hub는 최종 점검의 branch이고 main은 확정 branch이다.
