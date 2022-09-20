@@ -6,40 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body></body>
+    <div id="root"></div>
     <script>
         const root = document.getElementById("root")
-// 필요한 것 
-// 주소 키
-        let ** =`~주소 키~`;
-// XML 주소
-        const _BASIC_URL = `~xml 주소~`;
-// XML 주소 + 주소 키
-        const ### = _BASIC_URL + `?serviceKey=${**}`
-// 요청 부분
-        const request = new XMLHttpRequest();
-// XML 열기 요청
-            request.open("open", ###);
-            request.responType = "DOMparser";
-// 보내기 요청
-            request.send();
-// 요청 값이 실행되는 event
-            request.addEventListener('load', () => {
-                const animalApi = request.response;
-// domparser가 뭐야???? - XMl, HTML 소스 코드를 문자열에서 DOM으로 구문 분석하는 기능
-                let domparser = new DOMParser()
-// parseFromString(string, mimeType)
-// sting 구문 분석할 문자열, HTML, XML, svg 문서를 포함
-// mimeType 문자열 이 문자열은 XMLparser 또는 HTMLparser를 사용하여 문자열을 구문 분석하는지 여부 결정
-                let value = domparser.parseFromString(animalApi,"application/xml")
+        let key
+        =`aabdjVtDyODuXtGkvJfA7GEEAE%2B7oKgHMt3Vs2z1iZZy%2Fh0S9KF7iOxPZFyyqKg28lO9bKPRcx3WzJxQtZnlXg%3D%3D`;
+        const pageNum = "&numOfRows=10&pageNo=3";
+        const _BASIC_URL = `http://apis.data.go.kr/6300000/animalDaejeonService/animalDaejeonList`;
+        const realUrl = _BASIC_URL + `?serviceKey=${key}`
+                async function bring (){
+                        const response = await fetch(realUrl)
+                        const datas = await response.text()
+                        let domparser = new DOMParser()
+                        let value = domparser.parseFromString(datas,"application/xml")
+                        console.log(value)
+                        const data = value.querySelectorAll("items")
+                        console.log(data)
 
-                let picture = value.getElementsByTagName('ServiceResult')[0].children[2].children[0].getElementsByTagName('filePath')[0].textContent;
-
-                console.log(value);
-                console.log(picture);
-
-                root.innerHTML = `<img src = "~~~/${picture}"/>`
-             });
+                        data.forEach((item)=>{
+                        let inner = item.querySelector("filePath").innerHTML === null ? "" : item.querySelector("filePath").innerHTML
+                        console.log(inner)
+                        root.innerHTML += `<img style = "width: 400px; height: 400px;"src="http://www.daejeon.go.kr/${inner === null ? "" : inner}"/>`
+            })
+        }
+        jae()
+        
+        
+    </script>
+</body>
+</html>
     </script>
     <div id="root"></div>
 </body>
