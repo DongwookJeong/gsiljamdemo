@@ -7,14 +7,40 @@
     <title>Document</title>
 </head>
 <body>
-    <script type="module">
-        import 함수 from './whole.js';
+    <!-- ? xmlkey -->
+    <script type ="text/javascript" src="xmlkey">
         const root = document.getElementById("root")
-        let key
-        =`aabdjVtDyODuXtGkvJfA7GEEAE%2B7oKgHMt3Vs2z1iZZy%2Fh0S9KF7iOxPZFyyqKg28lO9bKPRcx3WzJxQtZnlXg%3D%3D`;
+        // import 함수 from './whole.js';
+        
         const pageNum = "&numOfRows=10&pageNo=3";
         const _BASIC_URL = `http://apis.data.go.kr/6300000/animalDaejeonService/animalDaejeonList`;
-        const realUrl = _BASIC_URL + `?serviceKey=${key}`
+        
+                const urlBundle = _BASIC_URL + `?serviceKey=${key}`
+        async function urlMachin (){
+            const response = await fetch(urlBundle)
+            const data = await response.text()
+            let domparser = new DOMParser()
+            let value = domparser.parseFromString(data, "application/xml")
+            console.log(value)
+            const dataItems = value.querySelectorAll("items")
+            console.log(dataItems)
+
+            let dataA = value.querySelectorAll("itmes")
+            console.log(dataA);
+            let dataB = Array.from(data)
+            let dataC = dataB.filter(function(item){
+                return item.querySelector("filePath") !== null
+            })
+            console.log(dataC)
+            dataC.forEach((item)=>{
+                const holy = item.querySelector("filePath").innerHYML
+                console.log(holy)
+                // let innerThings = item.querySelector("filePath").innerHTML
+                root.innerHTML += `<img style = "width: 400px; height: 400px;
+                "src="http://www.daejeon.go.kr/">`
+            })
+        }
+        urlMachin()
     </script>
 </body>
 </html>
