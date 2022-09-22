@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DongwookJeong/projectcdemo/issues"
   },
-  "homepage": "https://github.com/DongwookJeong/projectcdemo#readme"
+  "homepage": "https://github.com/DongwookJeong/projectcdemo#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }

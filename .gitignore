@@ -1,1 +1,4 @@
-/xmlkey.js
+/node_modules
+xmlkey.js
+package.json
+package-lock.json
